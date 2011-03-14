@@ -1592,6 +1592,10 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s255">ISMergeModule_</col>
 		<col key="yes" def="i2">Language_</col>
+		<row><td>DefaultFeature</td><td>CRT.98CB24AD_52FB_DB5F_FF1F_C8B3B9A1E18E</td><td>0</td></row>
+		<row><td>DefaultFeature</td><td>CRT.Policy.63E949F6_03BC_5C40_FF1F_C8B3B9A1E18E</td><td>0</td></row>
+		<row><td>DefaultFeature</td><td>Microsoft_VC100_CRT_x86.DF495DFD_79F6_34DF_BB1E_E58DB5BDCF2C</td><td>0</td></row>
+		<row><td>DefaultFeature</td><td>policy_9_0_Microsoft_VC90_CRT_x86.644DE414_7746_31B5_908B_E938B4078584</td><td>0</td></row>
 		<row><td>DefaultFeature</td><td>server_docs_mm.3E052019_AC33_40FC_9F9D_71C1A1B4C7C8</td><td>0</td></row>
 		<row><td>DefaultFeature</td><td>server_mm.09DE5D66_88FD_4345_97EE_506873561EC1</td><td>0</td></row>
 	</table>
@@ -1716,6 +1720,10 @@
 		<col def="s255">Name</col>
 		<col def="S255">Destination</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>CRT.98CB24AD_52FB_DB5F_FF1F_C8B3B9A1E18E</td><td>0</td><td>Visual C++ 8.0 CRT (x86) WinSXS MSM</td><td/><td/></row>
+		<row><td>CRT.Policy.63E949F6_03BC_5C40_FF1F_C8B3B9A1E18E</td><td>0</td><td>Visual C++ 8.0 CRT.Policy (x86) WinSXS MSM</td><td/><td/></row>
+		<row><td>Microsoft_VC100_CRT_x86.DF495DFD_79F6_34DF_BB1E_E58DB5BDCF2C</td><td>0</td><td>Visual C++ 10.0 CRT (x86)</td><td/><td/></row>
+		<row><td>policy_9_0_Microsoft_VC90_CRT_x86.644DE414_7746_31B5_908B_E938B4078584</td><td>0</td><td>Visual C++ 9.0 CRT (x86) WinSXS MSM</td><td/><td/></row>
 		<row><td>server_docs_mm.3E052019_AC33_40FC_9F9D_71C1A1B4C7C8</td><td>0</td><td>server_docs_mm</td><td>[INSTALLDIR]</td><td/></row>
 		<row><td>server_mm.09DE5D66_88FD_4345_97EE_506873561EC1</td><td>0</td><td>server_mm</td><td>[INSTALLDIR]</td><td/></row>
 	</table>
@@ -3881,7 +3889,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAFAAUgBPAEoARQBDAFQAXwBBAFMAUwBJAFMA
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{95137A8D-0896-4BB8-85B3-9D7723BA6811}</td><td/></row>
 		<row><td>ProductName</td><td>Couchbase Server</td><td/></row>
-		<row><td>ProductVersion</td><td>1.7.0r</td><td/></row>
+		<row><td>ProductVersion</td><td>1.1.0</td><td/></row>
 		<row><td>REBOOT</td><td>Suppress</td><td/></row>
 		<row><td>STANDARD_USE_SETUPEXE</td><td>##IDS_STANDARD_USE_SETUPEXE##</td><td/></row>
 		<row><td>SecureCustomProperties</td><td>ISALWAYSINSTALLELEVATED;ISSETUPDRIVEN;ARPSYSTEMCOMPONENT;ARPNOMODIFY;ARPNOREMOVE;INSTALLDIR;ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;IS_SQLSERVER_LIST;IS_SQLSERVER_DATABASE;IS_SQLSERVER_AUTHENTICATION;IS_SQLSERVER_USERNAME;IS_SQLSERVER_SERVER;IS_SQLSERVER_PASSWORD;IS_NET_API_LOGON_USERNAME;IS_NET_API_LOGON_PASSWORD;IS_NEW_USER_CONFIRM_TEXT;IS_NEW_USER_SERVER_TEXT;IS_NEW_USER_GROUP_TEXT;IS_NEW_USER_NAME_TEXT;IS_NET_API_NEW_USER_PASSWORD;IS_NET_API_NEW_USER_NAME;IS_NET_API_NEW_USER_CONFIRM;IS_NEW_USER_PASSWORD_TEXT;IS_NET_API_NEW_USER_SERVER;IS_NET_API_NEW_USER_GROUP;IS_NET_API_GROUP_LIST;IS_NET_API_SERVER_LIST;IS_NET_API_SERVER_NEW_USER_LIST;IS_NET_API_USER_LIST;IS_NET_API_LOGON_DOMAIN_TOKEN;IS_NET_API_LOGON_USERNAME_TOKEN;SUPPORTDIR;IE6FOUND;ISACTIONPROP1</td><td/></row>
