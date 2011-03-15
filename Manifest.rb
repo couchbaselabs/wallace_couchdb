@@ -38,7 +38,7 @@ end
 # Note, the erlang version is also hardcoded in the .ism/.rul
 # files on windows.
 #
-ERLANG_VER = '5.7.4'
+ERLANG_VER = '5.8.2'
 
 # ------------------------------------------------
 

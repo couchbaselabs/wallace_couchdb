@@ -302,6 +302,22 @@ def build_product_mm(name, name_final)
   end
 end
 
+def set_erl_version(path)
+  if is_windows?
+    s_before = File.new(path, 'r').read
+    s_after  = s_before
+
+    s_after = s_after.gsub(/<ERLANG_VER>/, "#{ERLANG_VER}")
+
+    if s_before != s_after
+      print "INFO: fixing scripts, in file #{path}\n"
+      File.open(path, 'w') {|fw| fw.write(s_after)}
+    else
+      print "INFO: skipping fixing script, no change to #{path}\n"
+    end
+  end
+end
+
 def fix_script(path, dc_name)
   if is_windows?
     s_before = File.new(path, 'r').read

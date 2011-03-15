@@ -73,13 +73,6 @@ COLLECT_PLATFORM_WIN =
                   /.*\/lib\/wx-/,
                  ]
     },
-    { :desc => "vcredist",
-      :seq =>32,
-      :src_file => "/#{builder_erlang_dir()}/vcredist_x86.exe",
-      :src_alt  => "#{BASE}",
-      :dist => false,
-      :dst_dir  => "components/Server/bin/erlang"
-    },
     { :desc => "couchdb",
       :seq => 100,
       :src_tgz => pull_make("#{BASEX}", "couchdb", VERSION_COUCHDB, "tar.gz",
@@ -93,7 +86,6 @@ COLLECT_PLATFORM_WIN =
                                                          " --with-win32-icu-binaries=#{STARTDIR}/#{BASE}/icu4c-4_2_1-Win32-msvc9/icu" +
                                                          " --with-erlang=#{builder_erlang_base()}/#{builder_erlang_dir()}/usr/include" +
                                                          " --with-win32-curl=#{STARTDIR}/#{BASE}/curl-7.20.1" +
-                                                         " --with-msvc-redist-dir=#{STARTDIR}/#{BASE}/vcredist_x86.exe" +
                                                          " --with-msbuild-dir=#{DOTNET_FRAMEWORK_4}",
                                            "sleep 1", # Makefile might not be written yet.
                                            "sed -e \"s| INSTALL.gz| |\" <Makefile >Makefile.out",
@@ -141,10 +133,21 @@ COLLECT_PLATFORM_WIN =
         FileUtils.rm_rf("components/Server/PR.template")
       }
     },
-    { :desc => "setup",
+    { :desc => "cleanup-staging",
       :seq  => -10,
       :step => Proc.new {|what|
         FileUtils.rm_rf("components/Server")
+      }
+    },
+    { :desc => "set-erl-version",
+      :seq  => -5,
+      :step => Proc.new {|what|
+        set_erl_version("components/platform_win/bin/service_register.bat")
+        set_erl_version("components/platform_win/bin/service_reregister.bat")
+        set_erl_version("components/platform_win/bin/service_start.bat")
+        set_erl_version("components/platform_win/bin/service_stop.bat")
+        set_erl_version("components/platform_win/bin/service_unregister.bat")
+        set_erl_version("is_server/Script\ Files/bin/Setup.Rul")
       }
     }
   ]
