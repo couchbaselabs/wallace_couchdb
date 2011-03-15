@@ -147,7 +147,7 @@ COLLECT_PLATFORM_WIN =
         set_erl_version("components/platform_win/bin/service_start.bat")
         set_erl_version("components/platform_win/bin/service_stop.bat")
         set_erl_version("components/platform_win/bin/service_unregister.bat")
-        set_erl_version("is_server/Script\ Files/bin/Setup.Rul")
+        set_erl_version("is_server/Script\ Files/Setup.Rul")
       }
     }
   ]

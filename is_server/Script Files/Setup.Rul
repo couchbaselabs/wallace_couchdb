@@ -15,7 +15,7 @@
 
 #define DEFAULT_PORT "5984"
 #define SERVICE_NAME "CouchbaseServer"
-// Erlang version vallue will be set in wallace_couchdb
+// Erlang version value will be set in wallace_couchdb
 #define ERLANG_VER  "<ERLANG_VER>"
 
 prototype VOID LaunchBrowser(STRING);
