@@ -95,7 +95,9 @@ COLLECT_PLATFORM_WIN =
                                                          " --with-win32-curl=#{STARTDIR}/#{BASE}/curl-7.20.1" +
                                                          " --with-msvc-redist-dir=#{STARTDIR}/#{BASE}/vcredist_x86.exe" +
                                                          " --with-msbuild-dir=#{DOTNET_FRAMEWORK_4}",
+                                           "sleep 1", # Makefile might not be written yet.
                                            "sed -e \"s| INSTALL.gz| |\" <Makefile >Makefile.out",
+                                           "sleep 1", # Makefile might not be written yet.
                                            "cp Makefile.out Makefile"],
                               :make => ["make -e LOCAL=#{base_tmp_install()}",
                                         "make install",
