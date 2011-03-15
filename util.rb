@@ -116,8 +116,9 @@ INSTALL_SHIELDS = [
 ]
 
 INSTALL_SHIELD = INSTALL_SHIELDS.find {|x| File.exists?(x)}
-
 DOTNET_FRAMEWORK_4 = '/c/Windows/Microsoft.NET/Framework/v4.0.30319'
+
+
 
 def builder_base()
   if is_windows?
@@ -178,7 +179,13 @@ def build_product(name, final_package_prefix=nil)
     when 'win'
       fix_ism("is_#{dc_name}/#{dc_name}.ism")
       fix_script("is_#{dc_name}/Script Files/Setup.Rul", dc_name)
-      sh "\"#{INSTALL_SHIELD}\" -p is_#{dc_name}/#{dc_name}.ism"
+
+      merge_path = 'C:\InstallShield 2010 Projects\MergeModules'
+      merge_path = merge_path + ',C:\Program Files (x86)\InstallShield\2010\Modules\i386'
+      merge_path = merge_path + ',C:\Program Files (x86)\InstallShield\2010\Objects'
+      merge_path = merge_path + ',C:\Program Files (x86)\Common Files\Merge Modules'
+
+      sh "\"#{INSTALL_SHIELD}\" -o \"" + merge_path + "\" -p is_#{dc_name}/#{dc_name}.ism"
       package_prefix = final_package_prefix if final_package_prefix
       FileUtils.cp(Dir.glob("./is_#{dc_name}/PROJECT*/**/setup.exe")[0],
                    "./is_#{dc_name}/#{package_prefix}_setup.exe")
@@ -333,10 +340,9 @@ def fix_ism(path)
     # PRODUCT_VERSION looks like 0.0.0-0-g12344321-win32
     # or, like 1.0.2rc1-win32
     #
-	prefix = PRODUCT_VERSION.split('-')[0]
+    prefix = PRODUCT_VERSION.split('-')[0]
     v_parts = prefix.split('.')
-    v_parts = "1.1.0a".split('.') if prefix == '1.1a'
-    v_parts = "1.1.0".split('.') if prefix == '1.1'
+
     ver_ism = "#{v_parts[0]}.#{v_parts[1]}.#{v_parts[2]}"
     if ver_ism.match(/^[0-9]+\.[0-9]+\.[0-9a-z]+$/)
       print "INFO: fixing ism ProductVersion to #{ver_ism}\n"

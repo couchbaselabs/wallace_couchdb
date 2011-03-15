@@ -138,6 +138,12 @@ COLLECT_PLATFORM_WIN =
       :step => Proc.new {|what|
         FileUtils.rm_rf("components/Server/PR.template")
       }
+    },
+    { :desc => "setup",
+      :seq  => -10,
+      :step => Proc.new {|what|
+        FileUtils.rm_rf("components/Server")
+      }
     }
   ]
 
