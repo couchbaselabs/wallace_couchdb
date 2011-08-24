@@ -16,6 +16,6 @@ VERSION_MOXI                     = "1.6.5"
 VERSION_LIBCONFLATE              = "1.6.5"
 VERSION_GROMMIT                  = "1.6.5"
 
-VERSION_COUCHDB  = "couchbase_1.1.2"
+VERSION_COUCHDB  = "couchbase-1.2.x"
 VERSION_GEOCOUCH = "couchbase_1.1.2_geo"
 
