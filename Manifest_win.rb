@@ -83,15 +83,6 @@ COLLECT_PLATFORM_WIN =
                     :branch => "origin/couchdb1.2.x",
                     :make => ["ls"]
                   }).call(what)
-        FileUtils.mkdir_p("#{STARTDIR}/components/Server/lib/geocouch/ebin")
-        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/build/*"),
-                       "#{STARTDIR}/components/Server/lib/geocouch/ebin")
-        FileUtils.mkdir_p("#{STARTDIR}/components/Server/etc/couchdb/local.d")
-        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/etc/couchdb/local.d/*"),
-                       "#{STARTDIR}/components/Server/etc/couchdb/local.d")
-        FileUtils.mkdir_p("#{STARTDIR}/components/Server/share/couchdb/www/script/test")
-        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/share/www/script/test/*"),
-                       "#{STARTDIR}/components/Server/share/couchdb/www/script/test")
       }
     },
     { :desc => "couchdb",
@@ -111,7 +102,8 @@ COLLECT_PLATFORM_WIN =
                                            "sleep 1", # Makefile might not be written yet.
                                            "sed -e \"s| INSTALL.gz| |\" <Makefile >Makefile.out",
                                            "sleep 1", # Makefile might not be written yet.
-                                           "cp Makefile.out Makefile"],
+                                           "cp Makefile.out Makefile",
+                                           "cp ../geocouch/share/www/script/test/etags_spatial.js share/www/script/test/"],
                               :make => ["make -e LOCAL=#{base_tmp_install()}",
                                         "make install",
                                         "make --file=#{STARTDIR}/components/Makefile.couchdb_extra" +
