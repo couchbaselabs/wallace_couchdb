@@ -73,6 +73,27 @@ COLLECT_PLATFORM_WIN =
                   /.*\/lib\/wx-/,
                  ]
     },
+    { :desc => "pre_geocouch",
+      :seq  => 90,
+      :step => Proc.new {|what|
+        pull_make("#{BASEX}", "geocouch", VERSION_GEOCOUCH, "tar.gz",
+                  { :os_arch => false,
+                    :skip_file => true,
+                    :no_parse_tag => true,
+                    :branch => "d09068e12d2b0560fe625941f4b53b259f518505",
+                    :make => ["ls"]
+                  }).call(what)
+        FileUtils.mkdir_p("#{STARTDIR}/components/Server/lib/geocouch/ebin")
+        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/build/*"),
+                       "#{STARTDIR}/components/Server/lib/geocouch/ebin")
+        FileUtils.mkdir_p("#{STARTDIR}/components/Server/etc/couchdb/local.d")
+        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/etc/couchdb/local.d/*"),
+                       "#{STARTDIR}/components/Server/etc/couchdb/local.d")
+        FileUtils.mkdir_p("#{STARTDIR}/components/Server/share/couchdb/www/script/test")
+        FileUtils.cp_r(Dir.glob("#{STARTDIR}/../geocouch/share/www/script/test/*"),
+                       "#{STARTDIR}/components/Server/share/couchdb/www/script/test")
+      }
+    },
     { :desc => "couchdb",
       :seq => 100,
       :src_tgz => pull_make("#{BASEX}", "couchdb", VERSION_COUCHDB, "tar.gz",
