@@ -80,7 +80,7 @@ COLLECT_PLATFORM_WIN =
                   { :os_arch => false,
                     :skip_file => true,
                     :no_parse_tag => true,
-                    :branch => "d09068e12d2b0560fe625941f4b53b259f518505",
+                    :branch => "couchdb1.2.x",
                     :make => ["ls"]
                   }).call(what)
         FileUtils.mkdir_p("#{STARTDIR}/components/Server/lib/geocouch/ebin")
@@ -127,7 +127,7 @@ COLLECT_PLATFORM_WIN =
                   { :os_arch => false,
                     :skip_file => true,
                     :no_parse_tag => true,
-                    :branch => "d09068e12d2b0560fe625941f4b53b259f518505",
+                    :branch => "couchdb1.2.x",
                     :make => ["make -e COUCH_SRC=#{STARTDIR}/../couchdb/src/couchdb"]
                   }).call(what)
         FileUtils.mkdir_p("#{STARTDIR}/components/Server/lib/geocouch/ebin")
