@@ -103,7 +103,7 @@ COLLECT_PLATFORM_WIN =
                                            "sed -e \"s| INSTALL.gz| |\" <Makefile >Makefile.out",
                                            "sleep 1", # Makefile might not be written yet.
                                            "cp Makefile.out Makefile",
-                                           "cp ../geocouch/share/www/script/test/etags_spatial.js share/www/script/test/"],
+                                           "cp -f ../geocouch/share/www/script/test/*.* share/www/script/test/"],
                               :make => ["make -e LOCAL=#{base_tmp_install()}",
                                         "make install",
                                         "make --file=#{STARTDIR}/components/Makefile.couchdb_extra" +
