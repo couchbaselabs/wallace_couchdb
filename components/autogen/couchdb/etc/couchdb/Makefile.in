@@ -94,6 +94,7 @@ CURL_LIBS = @CURL_LIBS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -101,6 +102,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 ERL = @ERL@
+ERLANG_INCLUDE = @ERLANG_INCLUDE@
 ERLC = @ERLC@
 ERLC_FLAGS = @ERLC_FLAGS@
 EXEEXT = @EXEEXT@
@@ -111,7 +113,9 @@ HELP2MAN_EXECUTABLE = @HELP2MAN_EXECUTABLE@
 ICU_CFLAGS = @ICU_CFLAGS@
 ICU_CONFIG = @ICU_CONFIG@
 ICU_CXXFLAGS = @ICU_CXXFLAGS@
+ICU_INCLUDE = @ICU_INCLUDE@
 ICU_LIBS = @ICU_LIBS@
+ICU_LIB_DIR = @ICU_LIB_DIR@
 ICU_LOCAL_BIN = @ICU_LOCAL_BIN@
 ICU_LOCAL_CFLAGS = @ICU_LOCAL_CFLAGS@
 ICU_LOCAL_LDFLAGS = @ICU_LOCAL_LDFLAGS@
@@ -135,6 +139,7 @@ LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -160,6 +165,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -204,7 +210,6 @@ localstatedir = @localstatedir@
 localstatelibdir = @localstatelibdir@
 localstatelogdir = @localstatelogdir@
 localstaterundir = @localstaterundir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 msbuild_dir = @msbuild_dir@
@@ -465,6 +470,7 @@ uninstall-am: uninstall-local uninstall-localconfDATA
 @WINDOWS_TRUE@		-e "s|%localbuilddatadir%|../share/couchdb|g" \
 @WINDOWS_TRUE@	    -e "s|%localstatelibdir%|../var/lib/couchdb|g" \
 @WINDOWS_TRUE@	    -e "s|%localstatelogdir%|../var/log/couchdb|g" \
+@WINDOWS_TRUE@	    -e "s|%localstaterundir%|../var/run/couchdb|g" \
 @WINDOWS_TRUE@	    -e "s|%couchprivlibdir%|../lib/couch-$(version)/priv/lib|g" \
 @WINDOWS_TRUE@	    -e "s|%couchjs_command_name%|couchjs.exe|g" \
 @WINDOWS_TRUE@	< $< > $@
@@ -475,6 +481,7 @@ uninstall-am: uninstall-local uninstall-localconfDATA
 @WINDOWS_FALSE@		-e "s|%localbuilddatadir%|$(localdatadir)|g" \
 @WINDOWS_FALSE@	    -e "s|%localstatelibdir%|$(localstatelibdir)|g" \
 @WINDOWS_FALSE@	    -e "s|%localstatelogdir%|$(localstatelogdir)|g" \
+@WINDOWS_FALSE@	    -e "s|%localstaterundir%|$(localstaterundir)|g" \
 @WINDOWS_FALSE@	    -e "s|%couchprivlibdir%|$(couchprivlibdir)|g" \
 @WINDOWS_FALSE@	    -e "s|%couchjs_command_name%|$(couchjs_command_name)|g" \
 @WINDOWS_FALSE@	< $< > $@
@@ -486,6 +493,7 @@ default_dev.ini: default.ini.tpl
 		-e "s|%localbuilddatadir%|$(abs_top_builddir)/share|g" \
 	    -e "s|%localstatelibdir%|$(abs_top_builddir)/tmp/lib|g" \
 	    -e "s|%localstatelogdir%|$(abs_top_builddir)/tmp/log|g" \
+	    -e "s|%localstaterundir%|$(abs_top_builddir)/tmp/run|g" \
 	    -e "s|%couchprivlibdir%|$(devcouchprivlibdir)|g" \
 	    -e "s|%couchjs_command_name%|$(couchjs_dev_command_name)|g" \
 	< $< > $@

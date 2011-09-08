@@ -97,6 +97,7 @@ CURL_LIBS = @CURL_LIBS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -104,6 +105,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 ERL = @ERL@
+ERLANG_INCLUDE = @ERLANG_INCLUDE@
 ERLC = @ERLC@
 ERLC_FLAGS = @ERLC_FLAGS@
 EXEEXT = @EXEEXT@
@@ -114,7 +116,9 @@ HELP2MAN_EXECUTABLE = @HELP2MAN_EXECUTABLE@
 ICU_CFLAGS = @ICU_CFLAGS@
 ICU_CONFIG = @ICU_CONFIG@
 ICU_CXXFLAGS = @ICU_CXXFLAGS@
+ICU_INCLUDE = @ICU_INCLUDE@
 ICU_LIBS = @ICU_LIBS@
+ICU_LIB_DIR = @ICU_LIB_DIR@
 ICU_LOCAL_BIN = @ICU_LOCAL_BIN@
 ICU_LOCAL_CFLAGS = @ICU_LOCAL_CFLAGS@
 ICU_LOCAL_LDFLAGS = @ICU_LOCAL_LDFLAGS@
@@ -138,6 +142,7 @@ LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -163,6 +168,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -207,7 +213,6 @@ localstatedir = @localstatedir@
 localstatelibdir = @localstatelibdir@
 localstatelogdir = @localstatelogdir@
 localstaterundir = @localstaterundir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 msbuild_dir = @msbuild_dir@
@@ -263,6 +268,7 @@ nobase_dist_localdata_DATA = \
     www/database.html \
     www/session.html \
     www/dialog/_admin_party.html \
+    www/dialog/_change_password.html \
     www/dialog/_compact_cleanup.html \
     www/dialog/_create_admin.html \
     www/dialog/_login.html \
@@ -300,6 +306,8 @@ nobase_dist_localdata_DATA = \
     www/image/save.png \
     www/image/sidebar-toggle.png \
     www/image/spinner.gif \
+    www/image/spinner_33.gif \
+    www/image/spinner_6b.gif \
     www/image/test_failure.gif \
     www/image/test_success.gif \
     www/image/thead-key.gif \
@@ -320,6 +328,7 @@ nobase_dist_localdata_DATA = \
     www/script/jquery.editinline.js \
     www/script/jquery.form.js \
     www/script/jquery.js \
+    www/script/jquery-ui-1.8.11.custom.min.js \
     www/script/jquery.resizer.js \
     www/script/jquery.suggest.js \
     www/script/json2.js \
@@ -336,6 +345,7 @@ nobase_dist_localdata_DATA = \
     www/script/test/attachment_conflicts.js \
     www/script/test/attachment_names.js \
     www/script/test/attachment_paths.js \
+    www/script/test/attachment_ranges.js \
     www/script/test/attachment_views.js \
     www/script/test/auth_cache.js \
     www/script/test/basics.js \
@@ -354,21 +364,18 @@ nobase_dist_localdata_DATA = \
     www/script/test/design_paths.js \
     www/script/test/erlang_views.js \
     www/script/test/etags_head.js \
-    www/script/test/etags_spatial.js \
     www/script/test/etags_views.js \
     www/script/test/form_submit.js \
     www/script/test/http.js \
     www/script/test/invalid_docids.js \
     www/script/test/jsonp.js \
     www/script/test/large_docs.js \
-    www/script/test/list_spatial.js \
     www/script/test/list_views.js \
     www/script/test/lorem.txt \
     www/script/test/lorem_b64.txt \
     www/script/test/lots_of_docs.js \
     www/script/test/method_override.js \
     www/script/test/multiple_rows.js \
-    www/script/test/multiple_spatial_rows.js \
     www/script/test/oauth.js \
     www/script/test/proxyauth.js \
     www/script/test/purge.js \
@@ -379,12 +386,11 @@ nobase_dist_localdata_DATA = \
     www/script/test/reduce_false.js \
     www/script/test/reduce_false_temp.js \
     www/script/test/replication.js \
+    www/script/test/replicator_db.js \
     www/script/test/rev_stemming.js \
     www/script/test/rewrite.js \
     www/script/test/security_validation.js \
     www/script/test/show_documents.js \
-    www/script/test/spatial.js \
-    www/script/test/spatial_compaction.js \
     www/script/test/stats.js \
     www/script/test/update_documents.js \
     www/script/test/users_db.js \
@@ -415,7 +421,9 @@ nobase_dist_localdata_DATA = \
     www/spec/jquery_couch_js_instance_methods_3_spec.js \
     www/spec/run.html \
     www/status.html \
+    www/style/jquery-ui-1.8.11.custom.css \
     www/style/layout.css \
+    www/verify_install.html \
     www/_sidebar.html
 
 all: all-am

@@ -16,6 +16,7 @@
 @SET_MAKE@
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -35,6 +36,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+noinst_PROGRAMS = test_cfg_register$(EXEEXT)
 subdir = test/etap
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/test_util.erl.in
@@ -50,10 +52,34 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES = test_util.erl
 CONFIG_CLEAN_VPATH_FILES =
+PROGRAMS = $(noinst_PROGRAMS)
+am_test_cfg_register_OBJECTS =  \
+	test_cfg_register-test_cfg_register.$(OBJEXT)
+test_cfg_register_OBJECTS = $(am_test_cfg_register_OBJECTS)
+test_cfg_register_LDADD = $(LDADD)
+test_cfg_register_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(test_cfg_register_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
+	-o $@
 SCRIPTS = $(noinst_SCRIPTS)
-SOURCES =
-DIST_SOURCES =
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
+am__depfiles_maybe = depfiles
+am__mv = mv -f
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(test_cfg_register_SOURCES)
+DIST_SOURCES = $(test_cfg_register_SOURCES)
 DATA = $(noinst_DATA)
+ETAGS = etags
+CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -74,6 +100,7 @@ CURL_LIBS = @CURL_LIBS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -81,6 +108,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 ERL = @ERL@
+ERLANG_INCLUDE = @ERLANG_INCLUDE@
 ERLC = @ERLC@
 ERLC_FLAGS = @ERLC_FLAGS@
 EXEEXT = @EXEEXT@
@@ -91,7 +119,9 @@ HELP2MAN_EXECUTABLE = @HELP2MAN_EXECUTABLE@
 ICU_CFLAGS = @ICU_CFLAGS@
 ICU_CONFIG = @ICU_CONFIG@
 ICU_CXXFLAGS = @ICU_CXXFLAGS@
+ICU_INCLUDE = @ICU_INCLUDE@
 ICU_LIBS = @ICU_LIBS@
+ICU_LIB_DIR = @ICU_LIB_DIR@
 ICU_LOCAL_BIN = @ICU_LOCAL_BIN@
 ICU_LOCAL_CFLAGS = @ICU_LOCAL_CFLAGS@
 ICU_LOCAL_LDFLAGS = @ICU_LOCAL_LDFLAGS@
@@ -115,6 +145,7 @@ LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -140,6 +171,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -184,7 +216,6 @@ localstatedir = @localstatedir@
 localstatelibdir = @localstatelibdir@
 localstatelogdir = @localstatelogdir@
 localstaterundir = @localstaterundir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 msbuild_dir = @msbuild_dir@
@@ -217,11 +248,15 @@ version_release = @version_release@
 version_revision = @version_revision@
 version_stage = @version_stage@
 noinst_SCRIPTS = run
-noinst_DATA = test_util.beam
+noinst_DATA = test_util.beam test_web.beam
+test_cfg_register_SOURCES = test_cfg_register.c
+test_cfg_register_CFLAGS = -D_BSD_SOURCE
 CLEANFILES = run *.beam
 DISTCLEANFILES = temp.*
 EXTRA_DIST = \
 	run.tpl \
+	test_web.erl \
+    random_port.ini \
     001-load.t \
     002-icu-driver.t \
     010-file-basics.t \
@@ -242,6 +277,7 @@ EXTRA_DIST = \
     064-kt-counting.t \
     065-kt-stemming.t \
     070-couch-db.t \
+    072-cleanup.t \
     080-config-get-set.t \
     081-config-override.1.ini \
     081-config-override.2.ini \
@@ -261,11 +297,27 @@ EXTRA_DIST = \
     130-attachments-md5.t \
     140-attachment-comp.t \
     150-invalid-view-seq.t \
-    160-vhosts.t
+    160-vhosts.t \
+    170-os-daemons.es \
+	170-os-daemons.t \
+    171-os-daemons-config.es \
+    171-os-daemons-config.t \
+    172-os-daemon-errors.1.sh \
+    172-os-daemon-errors.2.sh \
+    172-os-daemon-errors.3.sh \
+    172-os-daemon-errors.4.sh \
+    172-os-daemon-errors.t \
+	173-os-daemon-cfg-register.t \
+	180-http-proxy.ini \
+	180-http-proxy.t \
+  190-oauth.t \
+	200-view-group-no-db-leaks.t \
+	210-os-proc-pool.t
 
 all: all-am
 
 .SUFFIXES:
+.SUFFIXES: .c .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -299,17 +351,118 @@ $(am__aclocal_m4_deps):
 test_util.erl: $(top_builddir)/config.status $(srcdir)/test_util.erl.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
+clean-noinstPROGRAMS:
+	@list='$(noinst_PROGRAMS)'; test -n "$$list" || exit 0; \
+	echo " rm -f" $$list; \
+	rm -f $$list || exit $$?; \
+	test -n "$(EXEEXT)" || exit 0; \
+	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
+	echo " rm -f" $$list; \
+	rm -f $$list
+test_cfg_register$(EXEEXT): $(test_cfg_register_OBJECTS) $(test_cfg_register_DEPENDENCIES) 
+	@rm -f test_cfg_register$(EXEEXT)
+	$(test_cfg_register_LINK) $(test_cfg_register_OBJECTS) $(test_cfg_register_LDADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cfg_register-test_cfg_register.Po@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+test_cfg_register-test_cfg_register.o: test_cfg_register.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(test_cfg_register_CFLAGS) $(CFLAGS) -MT test_cfg_register-test_cfg_register.o -MD -MP -MF $(DEPDIR)/test_cfg_register-test_cfg_register.Tpo -c -o test_cfg_register-test_cfg_register.o `test -f 'test_cfg_register.c' || echo '$(srcdir)/'`test_cfg_register.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/test_cfg_register-test_cfg_register.Tpo $(DEPDIR)/test_cfg_register-test_cfg_register.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='test_cfg_register.c' object='test_cfg_register-test_cfg_register.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(test_cfg_register_CFLAGS) $(CFLAGS) -c -o test_cfg_register-test_cfg_register.o `test -f 'test_cfg_register.c' || echo '$(srcdir)/'`test_cfg_register.c
+
+test_cfg_register-test_cfg_register.obj: test_cfg_register.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(test_cfg_register_CFLAGS) $(CFLAGS) -MT test_cfg_register-test_cfg_register.obj -MD -MP -MF $(DEPDIR)/test_cfg_register-test_cfg_register.Tpo -c -o test_cfg_register-test_cfg_register.obj `if test -f 'test_cfg_register.c'; then $(CYGPATH_W) 'test_cfg_register.c'; else $(CYGPATH_W) '$(srcdir)/test_cfg_register.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/test_cfg_register-test_cfg_register.Tpo $(DEPDIR)/test_cfg_register-test_cfg_register.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='test_cfg_register.c' object='test_cfg_register-test_cfg_register.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(test_cfg_register_CFLAGS) $(CFLAGS) -c -o test_cfg_register-test_cfg_register.obj `if test -f 'test_cfg_register.c'; then $(CYGPATH_W) 'test_cfg_register.c'; else $(CYGPATH_W) '$(srcdir)/test_cfg_register.c'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	mkid -fID $$unique
 tags: TAGS
-TAGS:
 
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	set x; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	shift; \
+	if test -z "$(ETAGS_ARGS)$$*$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  if test $$# -gt 0; then \
+	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	      "$$@" $$unique; \
+	  else \
+	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	      $$unique; \
+	  fi; \
+	fi
 ctags: CTAGS
-CTAGS:
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	test -z "$(CTAGS_ARGS)$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$unique
 
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && $(am__cd) $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) "$$here"
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -343,7 +496,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(SCRIPTS) $(DATA)
+all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA)
 installdirs:
 install: install-am
 install-exec: install-exec-am
@@ -374,11 +527,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool mostlyclean-am
+clean-am: clean-generic clean-libtool clean-noinstPROGRAMS \
+	mostlyclean-am
 
 distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-tags
 
 dvi: dvi-am
 
@@ -421,12 +577,14 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -440,16 +598,18 @@ uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	distclean distclean-generic distclean-libtool distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am
+.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+	clean-libtool clean-noinstPROGRAMS ctags distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am
 
 
 %.beam: %.erl
