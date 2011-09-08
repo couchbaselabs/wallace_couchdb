@@ -900,6 +900,7 @@ install-data-hook:
 @WINDOWS_TRUE@	$(INSTALL) $(JS_LIB_BINARY) $(bindir)
 @WINDOWS_TRUE@	$(INSTALL) .libs/couchspawnkillable.exe \
 @WINDOWS_TRUE@		"$(DESTDIR)$(couchprivdir)/couchspawnkillable.exe"
+@WINDOWS_TRUE@	$(INSTALL) couchjs$(EXEEXT) $(bindir)
 
 uninstall-local:
 	if test -f "$(DESTDIR)$(couchprivlibdir)/couch_erl_driver"; then \
