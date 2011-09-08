@@ -267,7 +267,7 @@ Then, edit the Makefile and...
 Next, find . -name "*~" editor backup files and remove them
 
 Finally, it's ready for tar'ing
-
+G
   tar -czvf membase-server-community_VER_src.tar.gz membase-server-community_VER_src
 
 ---------------------------------------------------------------
@@ -281,4 +281,17 @@ Then, scp relevant files to somewhere in...
   mbweb01:/var/www/domains/files.membase.org/htdocs/source
 
 Double-check the file permissions, group (www-data) and md5's as needed.
+
+
+---------------------------------------------------------------
+To have a new release for couchdb
+1. Update sever.ism for new packagecode and productcode
+
+2. Regenerate autogen files for couchdb
+   go to couchdb src directory, and type ./bootstrap
+   copy all Makefile.in files to wallace_couchdb/components/autogen/couchdb
+
+3. If couchdb server fails to launch, check :
+  3.1. if any new empty directory is needed 
+  3.2  Check all the .exe, .dll and .bat files are under right locations
 
