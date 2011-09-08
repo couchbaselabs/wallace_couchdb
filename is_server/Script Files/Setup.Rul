@@ -75,7 +75,7 @@ begin
 end;
 
 function VOID CreateErlangIni(szIniDir, szBinDir)
-    STRING szRootPath, szBinPath, szIniPath, szIniName;
+    STRING szRootPath, szBinPath, szIniPath, szIniName, szPath;
     STRING szTitle, szTxt;
     NUMBER nvFileHandle;
 begin
@@ -84,7 +84,12 @@ begin
     if (ExistsDir(szIniPath) == NOTEXISTS) then
         if (CreateDir(szIniPath) < 0) then
             MessageBox ( szIniPath + " folder creation failed.", SEVERE);
-            abort;
+        endif;
+    endif;
+    szPath = szRootPath ^ "var" ^ "run" ^ "couchdb";
+    if (ExistsDir(szPath) == NOTEXISTS) then
+        if (CreateDir(szPath) < 0) then
+            MessageBox ( szPath + " folder creation failed.", SEVERE);
         endif;
     endif;
 
