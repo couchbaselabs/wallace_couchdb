@@ -58,7 +58,7 @@
 		<comments>Contact:  Your local administrator</comments>
 		<template>Intel;1033</template>
 		<lastauthor>Administrator</lastauthor>
-		<revnumber>{8BFF4CC8-4C7E-45F7-8127-79132CC8FA5D}</revnumber>
+		<revnumber>{0D4B4809-990C-438E-A872-9FA85351BC12}</revnumber>
 		<lastprinted/>
 		<createdtm>06/21/1999 05:00</createdtm>
 		<lastsavedtm>07/14/2000 08:50</lastsavedtm>
@@ -523,7 +523,7 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>SERVER1</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>SINGLE_SERVER</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
@@ -539,6 +539,7 @@
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>SERVER</td><td>MEMBASE</td><td>Server</td><td/><td>0</td><td/></row>
 		<row><td>SERVER1</td><td>COUCHBASE</td><td>Server</td><td/><td>0</td><td/></row>
+		<row><td>SINGLE_SERVER</td><td>COUCHBASE</td><td>SINGLE~1|Single Server</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
 		<row><td>StartMenu_Programs_Couchbase</td><td>ProgramMenuFolder</td><td>##ID_STRING5##</td><td/><td>1</td><td/></row>
@@ -3291,8 +3292,8 @@
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1394420622</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td>http://www.couchbase.com</td><td>0</td><td/><td>-786554604</td></row>
 		<row><td>ID_STRING10</td><td>1033</td><td>MEMBAS~1|Couchbase Console</td><td>0</td><td/><td>-1591823248</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Couchbase Server</td><td>0</td><td/><td>1235158034</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>Couchbase Server</td><td>0</td><td/><td>1235164178</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Couchbase Single Server</td><td>0</td><td/><td>1151294504</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Couchbase Single Server</td><td>0</td><td/><td>1151306792</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>MEMBAS~1|Couchbase</td><td>0</td><td/><td>1570630263</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>MEMBAS~1|Couchbase</td><td>0</td><td/><td>1570616087</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>MEMBAS~1|Couchbase Home</td><td>0</td><td/><td>-526464331</td></row>
@@ -3887,8 +3888,8 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAFAAUgBPAEoARQBDAFQAXwBBAFMAUwBJAFMA
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{95137A8D-0896-4BB8-85B3-9D7723BA6811}</td><td/></row>
-		<row><td>ProductName</td><td>Couchbase Server</td><td/></row>
+		<row><td>ProductCode</td><td>{2FBC75ED-ED1D-45A8-81C9-AC9262F55A23}</td><td/></row>
+		<row><td>ProductName</td><td>Couchbase Single Server</td><td/></row>
 		<row><td>ProductVersion</td><td>1.1.0</td><td/></row>
 		<row><td>REBOOT</td><td>Suppress</td><td/></row>
 		<row><td>STANDARD_USE_SETUPEXE</td><td>##IDS_STANDARD_USE_SETUPEXE##</td><td/></row>
