@@ -42,7 +42,7 @@ DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/src/couchdb/priv/couch_js/win32/msbuild.bat.tpl.in \
 	$(top_srcdir)/src/couchdb/priv/icu_driver/win32/couch_icu_driver.vcxproj.tpl.in \
 	$(top_srcdir)/src/couchdb/priv/icu_driver/win32/msbuild.bat.tpl.in \
-	AUTHORS NEWS THANKS build-aux/config.guess \
+	AUTHORS INSTALL NEWS THANKS build-aux/config.guess \
 	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
 	build-aux/ltmain.sh build-aux/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
